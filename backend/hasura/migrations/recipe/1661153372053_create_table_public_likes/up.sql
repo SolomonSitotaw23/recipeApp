@@ -1,0 +1,1 @@
+CREATE TABLE "public"."likes" ("id" uuid NOT NULL, "userId" uuid NOT NULL, "foodId" uuid NOT NULL, "numberOfLikes" uuid NOT NULL, PRIMARY KEY ("id") , FOREIGN KEY ("foodId") REFERENCES "public"."food"("id") ON UPDATE restrict ON DELETE restrict, FOREIGN KEY ("userId") REFERENCES "public"."user"("id") ON UPDATE restrict ON DELETE restrict, UNIQUE ("id"));

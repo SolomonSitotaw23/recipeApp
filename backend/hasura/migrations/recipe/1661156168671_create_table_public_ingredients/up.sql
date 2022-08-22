@@ -1,0 +1,1 @@
+CREATE TABLE "public"."ingredients" ("id" uuid NOT NULL, "foodId" uuid NOT NULL, "ingredientsList" text NOT NULL, PRIMARY KEY ("id") , FOREIGN KEY ("foodId") REFERENCES "public"."food"("id") ON UPDATE restrict ON DELETE restrict, UNIQUE ("id"));

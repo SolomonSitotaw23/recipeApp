@@ -20,33 +20,33 @@ onDone((result) => {
 });
 const onSubmit = (values) => {
   console.log(values);
-  // console.log(user.userId);
-  // insertFood({
-  //   title: values.title,
-  //   description: values.description,
-  //   image: values.image,
-  //   timeItTakes: values.timeItTakes,
-  //   userId: user.userId,
-  // });
-};
-let count = 1;
-let values = {};
-const add = () => {
-  count++;
-};
-const remove = () => {
-  count--;
-};
-const inputs = [];
-for (let count = 1; count <= 3; count++) {
-  inputs.push({
-    id: count,
-    type: "text",
-    placeholder: `step_${count}`,
-    value: ``,
-    name: `step_${count}`,
+  console.log(user.userId);
+  insertFood({
+    title: values.title,
+    description: values.description,
+    image: values.image,
+    timeItTakes: values.timeItTakes,
+    userId: user.userId,
   });
-}
+};
+// let count = 1;
+// let values = {};
+// const add = () => {
+//   count++;
+// };
+// const remove = () => {
+//   count--;
+// };
+// const inputs = [];
+// for (let count = 1; count <= 3; count++) {
+//   inputs.push({
+//     id: count,
+//     type: "text",
+//     placeholder: `step_${count}`,
+//     value: ``,
+//     name: `step_${count}`,
+//   });
+// }
 
 console.log(inputs);
 </script>
@@ -81,7 +81,7 @@ console.log(inputs);
           <Label htmlFor="timeItTakes" text="Time It Takes" />
           <TextField id="timeItTakes" type="text" name="timeItTakes" />
           <Label htmlFor="type" text="Direction" />
-          <div v-for="input in inputs" :key="input.id">
+          <!-- <div v-for="input in inputs" :key="input.id">
             <TextField
               :type="input.type"
               :placeholder="input.placeholder"
@@ -89,7 +89,7 @@ console.log(inputs);
               :name="input.name"
               :rules="input.rules"
             />
-          </div>
+          </div> -->
 
           <div className="mt-8">
             <Button text="Add" type="submit" />

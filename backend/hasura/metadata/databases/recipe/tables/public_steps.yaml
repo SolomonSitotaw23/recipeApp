@@ -1,6 +1,6 @@
 table:
   schema: public
-  name: ingredients
+  name: steps
 object_relationships:
   - name: recipe
     using:

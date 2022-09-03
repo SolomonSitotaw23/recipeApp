@@ -5,8 +5,8 @@ const jwt = require("jsonwebtoken");
 const cors = require("cors");
 const signup_query = require("./queries/signup_query");
 const login_query = require("./queries/login_query");
-const fileUpload_query = require("./queries/fileUploade_query");
-const fileUploade = require("./file_uploade/book_file_uploade");
+//const fileUpload_query = require("./queries/fileUploade_query");
+//const fileUploade = require("./file_uploade/book_file_uploade");
 
 
 // const soldItemsHelper = require("./")
@@ -59,7 +59,7 @@ const login_execute = async (variables) => {
 // Sign Up Request Handler
 app.post("/signup", async (req, res) => {
   // get request input
-  const { email, fullname, id } = req.body.input;
+  const { first_name , last_name,email, id } = req.body.input;
 
   // run some business logic
   const password = await bcrypt.hash(req.body.input.password, 10);
@@ -67,7 +67,8 @@ app.post("/signup", async (req, res) => {
 
   const { data, errors } = await signup_execute({
     email,
-    fullname,
+    first_name, 
+    last_name,
     password,
    
   });
@@ -78,7 +79,8 @@ app.post("/signup", async (req, res) => {
 
   const tokenContents = {
     sub: data.insert_user_one.id,
-    name: fullname,
+    first_name: first_name,
+    last_name: last_name,
     iat: Date.now() / 1000,
     iss: "https://myapp.com/",
     "https://hasura.io/jwt/claims": {
@@ -93,7 +95,8 @@ app.post("/signup", async (req, res) => {
   // token claim for users
   const usertokenContents = {
     sub: data.insert_user_one.id,
-    name: fullname,
+    first_name: first_name,
+    last_name: last_name,
     iat: Date.now() / 1000,
     iss: "https://myapp.com/",
     "https://hasura.io/jwt/claims": {
@@ -144,7 +147,8 @@ app.post("/Login", async (req, res) => {
   // token claim for users
   const usertokenContents = {
     sub: data.user[0].id,
-    name: data.user[0].fullname,
+    first_name: data.user[0].first_name,
+    last_name: data.user[0].last_name,
     iat: Date.now() / 1000,
     iss: "https://myapp.com/",
     "https://hasura.io/jwt/claims": {
@@ -177,7 +181,7 @@ app.post("/Login", async (req, res) => {
 
 
 
-const port = process.env.PORT || 5050;
+const port = process.env.PORT || 5000;
 app.listen(port, () => {
   console.log(`Server started on port ${port}`);
 });

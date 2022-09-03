@@ -1,3 +1,12 @@
 table:
   schema: public
   name: images
+object_relationships:
+  - name: recipe
+    using:
+      foreign_key_constraint_on: recipe_id
+select_permissions:
+  - role: user
+    permission:
+      columns: []
+      filter: {}

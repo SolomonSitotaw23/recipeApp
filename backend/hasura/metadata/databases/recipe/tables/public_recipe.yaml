@@ -1,0 +1,35 @@
+table:
+  schema: public
+  name: recipe
+array_relationships:
+  - name: imagesByRecipeId
+    using:
+      foreign_key_constraint_on:
+        column: recipe_id
+        table:
+          schema: public
+          name: images
+  - name: ingredients
+    using:
+      foreign_key_constraint_on:
+        column: recipe_id
+        table:
+          schema: public
+          name: ingredients
+  - name: steps
+    using:
+      foreign_key_constraint_on:
+        column: recipe_id
+        table:
+          schema: public
+          name: steps
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      columns:
+        - description
+        - food_category
+        - preparation_time
+        - title
+        - user_id

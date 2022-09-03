@@ -1,0 +1,2 @@
+CREATE TABLE "public"."recipe" ("id" uuid NOT NULL DEFAULT gen_random_uuid(), "title" text NOT NULL, "description" text NOT NULL, "food_catagory" text NOT NULL, "preparation_time" Text NOT NULL, "images" uuid NOT NULL, "ingredients" uuid NOT NULL, "steps" uuid NOT NULL, "user_id" uuid NOT NULL, PRIMARY KEY ("id") , FOREIGN KEY ("user_id") REFERENCES "public"."user"("id") ON UPDATE restrict ON DELETE restrict, UNIQUE ("id"));
+CREATE EXTENSION IF NOT EXISTS pgcrypto;

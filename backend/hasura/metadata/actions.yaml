@@ -11,8 +11,8 @@ actions:
       kind: synchronous
       handler: http://localhost:5000/signup
     permissions:
-      - role: anonymous
       - role: user
+      - role: anonymous
 custom_types:
   enums: []
   input_objects: []

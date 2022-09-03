@@ -8,24 +8,26 @@ type Mutation {
 type Mutation {
   signup(
     email: String
-    fullname: String
+    first_name: String
+    last_name: String
     password: String
-    id: String
   ): SignUpOutput
 }
 
 type LoginOutput {
-  email: String!
   id: uuid!
+  email: String!
   password: String!
-  fullname: String!
+  first_name: String!
+  last_name: String!
   token: String!
 }
 
 type SignUpOutput {
   id: String!
   email: String!
-  fullname: String!
+  first_name: String!
+  last_name: String!
   token: String!
 }
 

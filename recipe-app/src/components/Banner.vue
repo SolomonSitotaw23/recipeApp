@@ -12,9 +12,9 @@ const count = ref(0);
   <section className="header-banner h-96 w-full bg-yellow-50">
     <div className="flex flex-col items-center justify-center h-full">
       <h1
-        className="text-center text-3xl md:text-4xl lg:text-5xl poppins font-semibold text-gray-700"
+        className="text-center text-3xl md:text-4xl lg:text-5xl poppins font-semibold text-blue-700"
       >
-        Best food waiting for your belly
+        Solo Food Recipe Sharing
       </h1>
 
       <div

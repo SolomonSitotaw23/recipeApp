@@ -35,6 +35,11 @@
   "resolved" "https://registry.npmjs.org/@headlessui/vue/-/vue-1.6.7.tgz"
   "version" "1.6.7"
 
+"@heroicons/vue@^1.0.6":
+  "integrity" "sha512-ng2YcCQrdoQWEFpw+ipFl2rZo8mZ56v0T5+MyfQQvNqfKChwgP6DMloZLW+rl17GEcHkE3H82UTAMKBKZr4+WA=="
+  "resolved" "https://registry.npmjs.org/@heroicons/vue/-/vue-1.0.6.tgz"
+  "version" "1.0.6"
+
 "@nodelib/fs.scandir@2.1.5":
   "integrity" "sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g=="
   "resolved" "https://registry.npmjs.org/@nodelib/fs.scandir/-/fs.scandir-2.1.5.tgz"
@@ -870,7 +875,7 @@
   dependencies:
     "@vue/devtools-api" "^6.1.4"
 
-"vue@^2.0.0 || >=3.0.0", "vue@^2.6.0 || ^3.1.0", "vue@^2.6.14 || ^3.2.0", "vue@^3.0.0", "vue@^3.0.0-0 || ^2.6.0", "vue@^3.1.0", "vue@^3.2.0", "vue@^3.2.25", "vue@^3.2.37", "vue@3.2.37":
+"vue@^2.0.0 || >=3.0.0", "vue@^2.6.0 || ^3.1.0", "vue@^2.6.14 || ^3.2.0", "vue@^3.0.0", "vue@^3.0.0-0 || ^2.6.0", "vue@^3.1.0", "vue@^3.2.0", "vue@^3.2.25", "vue@^3.2.37", "vue@>= 3", "vue@3.2.37":
   "integrity" "sha512-bOKEZxrm8Eh+fveCqS1/NkG/n6aMidsI6hahas7pa0w/l7jkbssJVsRhVDs07IdDq7h9KHswZOgItnwJAgtVtQ=="
   "resolved" "https://registry.npmjs.org/vue/-/vue-3.2.37.tgz"
   "version" "3.2.37"

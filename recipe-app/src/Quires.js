@@ -24,54 +24,45 @@ export const SIGNUP = gql`
   }
 `;
 
-export const INSERTFOOD = gql`
-  mutation INSERTFOOD(
-    $title: String!
-    $description: String!
-    $image: String!
-    $timeItTakes: String!
-    $userId: uuid!
-  ) {
-    insert_food(
-      objects: {
-        title: $title
-        description: $description
-        image: $image
-        timeItTakes: $timeItTakes
-        userId: $userId
+export const ALL_RECIPE = gql`
+  query ALL_RECIPE($limit: Int, $offset: Int) {
+    recipe(limit: $limit, offset: $offset) {
+      created_at
+      description
+      food_category
+      id
+      preparation_time
+      ingredients {
+        ingredients
       }
-    ) {
-      returning {
-        id
-        image
-        timeItTakes
-        title
-        userId
-        description
-      }
+      title
+      user_id
+    }
+    steps {
+      steps
     }
   }
 `;
-
-export const ALLFOODS = gql`
-  query ALLFOODS {
-    food {
+export const ONE_RECIPE = gql`
+  query ONE_RECIPE($id: uuid!) {
+    recipe_by_pk(id: $id) {
+      created_at
       description
+      food_category
       id
-      image
-      timeItTakes
+      ingredients {
+        ingredients
+      }
+      preparation_time
+      steps {
+        steps
+      }
       title
-    }
-  }
-`;
-export const ONE_FOOD = gql`
-  query ONE_FOOD($id: uuid!) {
-    food_by_pk(id: $id) {
-      description
-      id
-      image
-      timeItTakes
-      title
+      user_id
+      imagesByRecipeId {
+        thumbnail_index
+        urls
+      }
     }
   }
 `;

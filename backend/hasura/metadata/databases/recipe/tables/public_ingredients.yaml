@@ -5,3 +5,18 @@ object_relationships:
   - name: recipe
     using:
       foreign_key_constraint_on: recipe_id
+insert_permissions:
+  - role: user
+    permission:
+      check: {}
+      columns:
+        - ingredients
+        - recipe_id
+select_permissions:
+  - role: user
+    permission:
+      columns:
+        - ingredients
+        - id
+        - recipe_id
+      filter: {}

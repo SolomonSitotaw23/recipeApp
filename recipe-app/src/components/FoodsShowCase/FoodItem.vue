@@ -1,11 +1,12 @@
 <script setup>
+import { HeartIcon } from "@heroicons/vue/solid";
 const props = defineProps({
   id: String,
   title: String,
-  image: String,
+  // image: String,
   description: String,
   foodType: String,
-  timeItTakes: String,
+  preparation_time: String,
 });
 </script>
 
@@ -15,7 +16,7 @@ const props = defineProps({
   >
     <img
       className="w-64 mx-auto transform transition duration-300 hover:scale-105"
-      :src="image"
+      src="https://red-onion-restaurant-41dbe.web.app/assets/Breakfast/breakfast1.png"
       alt=""
     />
     <div className="flex flex-col items-center my-3 space-y-2">
@@ -24,7 +25,7 @@ const props = defineProps({
         {{ description.slice(0, 50) }}
       </p>
       <h2 className="text-gray-900 poppins text-2xl font-bold">
-        {{ timeItTakes }}
+        {{ preparation_time }}
       </h2>
       <div class="flex flex-row justify-between align-bottom">
         <RouterLink
@@ -42,7 +43,8 @@ const props = defineProps({
           type="button"
           class="inline-flex items-center px-8 py-2 text-sm font-medium text-center text-white mt-24 mx-10 bg-blue-700 rounded-full hover:bg-blue-800 focus:ring-4 focus:outline-none dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
         >
-          <ion-icon name="thumbs-up"></ion-icon>
+          <HeartIcon aria-hidden="true" class="w-5" />
+
           <span
             class="inline-flex justify-center items-center ml-2 w-4 h-4 text-xs font-semibold text-blue-800 bg-blue-200 rounded-full"
           >

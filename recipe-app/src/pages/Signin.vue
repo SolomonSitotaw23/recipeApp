@@ -14,16 +14,26 @@ import { validatePass, validateEmail } from "../Validation/Validation";
 const user = userLoginStore();
 const router = useRouter();
 
-const { mutate: login, onDone } = useMutation(LOGIN);
+const {
+  mutate: login,
+  loading: loginLoading,
+  error,
+  onDone,
+} = useMutation(LOGIN);
 
 onDone((result) => {
-  console.log(result.data.login.token);
-
   const token = result.data.login.token;
   const userId = result.data.login.id;
-  Swal.fire("Sign in success!", "welcome !", "success");
-  user.login(token, userId);
-  router.push("/");
+  const currentUser = result.data.login;
+  user.login(token, userId, currentUser);
+  Swal.fire({
+    position: "top-end",
+    icon: "success",
+    title: "Sign In success",
+    showConfirmButton: false,
+    timer: 1500,
+    width: 300,
+  });
 });
 
 const onSubmit = (values) => {
@@ -32,7 +42,6 @@ const onSubmit = (values) => {
     email: values.email,
     password: values.password,
   });
-  // console.log(result);
 };
 
 const Inputs = [
@@ -74,8 +83,15 @@ const Inputs = [
             />
             <ErrorMessage class="text-xs text-red-600" :name="input.name" />
           </div>
+          <p class="text-red-500 text-xs">{{ error }}</p>
         </div>
-        <Button text="Sign In" />
+        <Button v-if="loginLoading" type="button" text="Processing..">
+          <svg class="animate-spin h-5 w-5 mr-3 ..." viewBox="0 0 24 24">
+            <!-- ... -->
+          </svg>
+          Logging in...
+        </Button>
+        <Button v-else text="Sign In" />
         <RouterLink to="/signup">
           <p class="text-base text-primary text-center my-6 hover:underline">
             Need an account ?

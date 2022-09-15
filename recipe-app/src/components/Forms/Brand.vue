@@ -2,7 +2,7 @@
 
 <template>
   <div>
-    <img className="w-52" src="{logo}" alt="logo" />
+    <img class="w-52" src="{logo}" alt="logo" />
   </div>
 </template>
 

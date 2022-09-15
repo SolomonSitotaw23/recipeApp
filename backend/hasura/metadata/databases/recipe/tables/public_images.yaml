@@ -17,5 +17,9 @@ insert_permissions:
 select_permissions:
   - role: user
     permission:
-      columns: []
+      columns:
+        - thumbnail_index
+        - urls
+        - id
+        - recipe_id
       filter: {}

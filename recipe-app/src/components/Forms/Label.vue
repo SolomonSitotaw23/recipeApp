@@ -5,7 +5,7 @@ const props = defineProps({
 </script>
 
 <template>
-  <label htmlFor="title" className="text-gray-500 poppins">{{ text }}</label>
+  <label htmlFor="title" class="text-gray-500 poppins">{{ text }}</label>
 </template>
 
 <style scoped></style>

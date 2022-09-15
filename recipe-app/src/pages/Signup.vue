@@ -26,14 +26,15 @@ onDone((result) => {
   Swal.fire("Sign in success!", "welcome !", "success");
   const token = result.data.signup.token;
   const userId = result.data.signup.id;
-  user.login(token, userId);
+  const currentUser = result.data.signup;
+  user.login(token, userId, currentUser);
   router.push("/");
 });
 
 const onSubmit = (values) => {
-  console.log(values);
   signup({
-    fullname: values.fullname,
+    first_name: values.first_name,
+    last_name: values.last_name,
     email: values.email,
     password: values.password,
   });
@@ -44,9 +45,17 @@ const Inputs = [
   {
     id: 1,
     type: "text",
-    placeholder: "Full Name",
+    placeholder: "first Name",
     value: "",
-    name: "fullname",
+    name: "first_name",
+    rules: validateName,
+  },
+  {
+    id: 1,
+    type: "text",
+    placeholder: "last Name",
+    value: "",
+    name: "last_name",
     rules: validateName,
   },
   {

@@ -1,15 +1,23 @@
 import { createRouter, createWebHashHistory } from "vue-router";
 // pages
 import HomePage from "../pages/HomePage.vue";
+import Search from "../pages/Search.vue";
 import Signin from "../pages/Signin.vue";
 import Signup from "../pages/Signup.vue";
 import FoodDetail from "../pages/FoodDetail.vue";
 import AddRecipe from "../pages/AddRecipe.vue";
 import { userLoginStore } from "../store/store";
-
+import MyFavorites from "../pages/MyFavorites.vue";
+import Error from "../pages/Error.vue";
+import imageUpload from "../components/imageUpload/imageUpload.vue";
 const token = window.localStorage.getItem("token");
 
 const routes = [
+  {
+    path: "/:pathMatch(.*)*",
+    name: "error",
+    component: Error,
+  },
   {
     path: "/",
     name: "homePage",
@@ -34,6 +42,21 @@ const routes = [
     path: "/foodDetail/:id",
     name: "FoodDetail",
     component: FoodDetail,
+  },
+  {
+    path: "/imageUpload",
+    name: "imageUpload",
+    component: imageUpload,
+  },
+  {
+    path: "/favorites",
+    name: "favorites",
+    component: MyFavorites,
+  },
+  {
+    path: "/search/:keyword",
+    name: "search",
+    component: Search,
   },
 ];
 

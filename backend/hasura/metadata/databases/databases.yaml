@@ -9,3 +9,4 @@
   customization:
     naming_convention: hasura-default
   tables: "!include recipe/tables/tables.yaml"
+  functions: "!include recipe/functions/functions.yaml"

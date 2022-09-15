@@ -9,6 +9,8 @@ import { createHttpLink } from "@apollo/client/core";
 import router from "./Router";
 import piniaPersist from "pinia-plugin-persist";
 import { setContext } from "@apollo/client/link/context";
+import VueSmoothScroll from "vue3-smooth-scroll";
+
 const pinia = createPinia();
 pinia.use(piniaPersist);
 pinia.use(({ store }) => {
@@ -19,18 +21,17 @@ const cache = new InMemoryCache();
 const httpLink = createHttpLink({
   uri: "http://localhost:8080/v1/graphql",
 });
-
+const token = window.localStorage.getItem("token");
 const authLink = setContext((_, { headers }) => {
   return {
     headers: {
       ...headers,
-      // ...(token && { authorization: `Bearer ${token}` }),
-      "x-hasura-admin-secret": "myadminsecretkey",
+      ...((token && { authorization: `Bearer ${token}` }) || ""),
     },
   };
 });
 
-const apolloClient = new ApolloClient({
+export const apolloClient = new ApolloClient({
   cache,
   link: authLink.concat(httpLink),
 });
@@ -44,4 +45,5 @@ createApp({
 })
   .use(pinia)
   .use(router)
+  .use(VueSmoothScroll)
   .mount("#app");

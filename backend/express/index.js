@@ -5,26 +5,66 @@ const jwt = require("jsonwebtoken");
 const cors = require("cors");
 const signup_query = require("./queries/signup_query");
 const login_query = require("./queries/login_query");
-//const fileUpload_query = require("./queries/fileUploade_query");
-//const fileUploade = require("./file_uploade/book_file_uploade");
+const formidable = require("formidable");
+const fss = require("fs-extra");
+const fs = require("fs");
 
-
-// const soldItemsHelper = require("./")
+const multer = require("multer");
 require("dotenv").config();
 
 const app = express();
-
+app.use(express.urlencoded({ extended: true }));
 app.use(express.json({ limit: "10mb" }));
 app.use(express.urlencoded({ extended: true }));
 app.use(cors());
-app.use(express.static("public"));
+// !Serving static files
+app.use(express.static("images"));
+app.use("/images", express.static("images"));
+// __________________________________________
 
 app.get("/", (req, res) => {
   res.send("Server running ... ");
 });
+//! multer
+const storage = multer.diskStorage({
+  destination: (req, file, cb) => {
+    const parsedRecipeId = JSON.parse(req.body.recipeImage);
+    console.log(parsedRecipeId);
+    console.log(parsedRecipeId.imageFolderKey);
+    if (parsedRecipeId) {
+      const path = `./images/recipe/${parsedRecipeId.imageFolderKey}`;
+      fs.mkdirSync(path, { recursive: true });
+      cb(null, path);
+    }
+  },
+  filename: (req, file, cb) => {
+    const fileName = file.originalname.toLowerCase().split(" ").join("-");
+    console.log(file);
 
+    cb(null, fileName);
+  },
+});
 
-
+var upload = multer({
+  storage: storage,
+  fileFilter: (req, file, cb) => {
+    if (
+      file.mimetype == "image/png" ||
+      file.mimetype == "image/jpg" ||
+      file.mimetype == "image/jpeg"
+    ) {
+      cb(null, true);
+    } else {
+      cb(null, false);
+      req.error = "Only .png, .jpg and .jpeg allowed";
+      return cb(
+        null,
+        false,
+        new Error("Only .png, .jpg and .jpeg format allowed!")
+      );
+    }
+  },
+});
 // signup query execute
 const signup_execute = async (variables) => {
   const fetchResponse = await fetch("http://localhost:8080/v1/graphql", {
@@ -54,12 +94,33 @@ const login_execute = async (variables) => {
   console.log("DEBUG: ", data);
   return data;
 };
+// !_______________________________________________
+app.post("/imageUpload", upload.any(), async (req, res) => {
+  res.sendStatus(200);
+});
 
+app.post("/deleteImage", (req, res) => {
+  const parsedRecipeId = JSON.parse(req.body.recipeImage);
+  console.log(parsedRecipeId.id);
+  const path = `./images/recipe/${parsedRecipeId.id}/`;
+  const fileName = file.originalname.toLowerCase().split(" ").join("-");
+  const file = `${path}/fileName`;
+  fs.rmSync(file, { recursive: true, force: true });
+  res.sendStatus(200);
+});
 
+// app.post("/save", function (req, res) {
+//   console.log("BEGIN /save");
+// console.log(`req: ${JSON.stringify(req)}`);
+// let fileData = fs.readFileSync(reqipeImage);
+// console.log(fileData.toString());
+//   console.log(req);
+// });
+// !______________________________________________
 // Sign Up Request Handler
 app.post("/signup", async (req, res) => {
   // get request input
-  const { first_name , last_name,email, id } = req.body.input;
+  const { first_name, last_name, email, id } = req.body.input;
 
   // run some business logic
   const password = await bcrypt.hash(req.body.input.password, 10);
@@ -67,10 +128,9 @@ app.post("/signup", async (req, res) => {
 
   const { data, errors } = await signup_execute({
     email,
-    first_name, 
+    first_name,
     last_name,
     password,
-   
   });
   // if Hasura operation errors, then throw error
   if (errors) {
@@ -108,7 +168,6 @@ app.post("/signup", async (req, res) => {
     exp: Math.floor(Date.now() / 1000) + 24 * 60 * 60,
   };
 
-
   const token = jwt.sign(
     usertokenContents,
     process.env.HASURA_JWT_SECRET_KEY || "z8pXvFrDjGWb3mRSJBAp9ZljHRnMofLF"
@@ -116,7 +175,6 @@ app.post("/signup", async (req, res) => {
 
   console.log(token);
   // success
-
 
   return res.json({
     ...data.insert_user_one,
@@ -160,8 +218,6 @@ app.post("/Login", async (req, res) => {
     exp: Math.floor(Date.now() / 1000) + 24 * 60 * 60,
   };
 
-
-
   const token = jwt.sign(
     usertokenContents,
     process.env.HASURA_JWT_SECRET_KEY || "z8pXvFrDjGWb3mRSJBAp9ZljHRnMofLF"
@@ -177,9 +233,6 @@ app.post("/Login", async (req, res) => {
     token: token,
   });
 });
-
-
-
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {

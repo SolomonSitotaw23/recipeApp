@@ -10,9 +10,6 @@ import { ref } from "vue";
 const user = userLoginStore();
 
 const fullName = user.currentUser.first_name + " " + user.currentUser.last_name;
-
-console.log(fullName);
-
 const logoutHandler = () => {
   const router = useRouter();
   user.logout;
@@ -40,11 +37,9 @@ window.addEventListener("scroll", onChangeHeader);
     "
   >
     <nav
-      class="flex items-center max-w-screen-xl mx-auto px-6 py-3 justify-between"
+      class="flex items-center h-20 max-w-screen-xl mx-auto px-6 py-3 justify-between"
     >
-      <div class="flex items-center justify-start space-x-6">
-        <!-- <h1 class="text-blue-400 font-bold text-xl">Solo Recipe</h1> -->
-      </div>
+      <Back />
 
       <div
         v-if="user.isLoggedIn"

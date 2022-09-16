@@ -1,0 +1,2 @@
+CREATE TABLE "public"."rating" ("id" uuid NOT NULL DEFAULT gen_random_uuid(), "user_id" uuid NOT NULL, "recipe_id" uuid NOT NULL, "rating" float8 NOT NULL DEFAULT 0, PRIMARY KEY ("id") , FOREIGN KEY ("recipe_id") REFERENCES "public"."recipe"("id") ON UPDATE cascade ON DELETE cascade, FOREIGN KEY ("user_id") REFERENCES "public"."user"("id") ON UPDATE cascade ON DELETE cascade, UNIQUE ("id"));
+CREATE EXTENSION IF NOT EXISTS pgcrypto;

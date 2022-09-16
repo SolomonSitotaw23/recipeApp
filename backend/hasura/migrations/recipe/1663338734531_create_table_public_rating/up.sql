@@ -1,0 +1,1 @@
+CREATE TABLE "public"."rating" ("user_id" uuid NOT NULL, "recipe_id" uuid NOT NULL, "rating" float8 NOT NULL, PRIMARY KEY ("user_id","recipe_id") , FOREIGN KEY ("recipe_id") REFERENCES "public"."recipe"("id") ON UPDATE cascade ON DELETE cascade, FOREIGN KEY ("user_id") REFERENCES "public"."user"("id") ON UPDATE cascade ON DELETE cascade);

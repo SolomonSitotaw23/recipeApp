@@ -1,0 +1,3 @@
+-- Could not auto-generate a down migration.
+-- Please write an appropriate down migration for the SQL below:
+-- Drop FUNCTION public.user_likes(recipe_row recipe, hasura_session json);

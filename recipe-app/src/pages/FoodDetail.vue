@@ -8,6 +8,10 @@ import {
   ONE_RECIPE,
   FAVORITES_WITH_RECIPE_ID,
   REMOVE_FROM_FAVORITES,
+  RATE_RECIPE,
+  IS_RATED,
+  ALL_RECIPE,
+  UPDATE_RATING_RECIPE,
 } from "../Quires";
 import { computed } from "@vue/reactivity";
 import Back from "../Router/Back.vue";
@@ -17,7 +21,7 @@ import Comment from "../components/comment/Comment.vue";
 import Loading from "../components/loading/Loading.vue";
 import Disclosure from "../components/Disclosure/Disclosure.vue";
 import FoodImageGrid from "../components/FoodImageGrid/FoodImageGrid.vue";
-import { onMounted, ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 import Swal from "sweetalert2";
 import StarRating from "vue-star-rating";
 const food = userLoginStore();
@@ -25,6 +29,40 @@ const route = useRoute();
 const router = useRouter();
 const Rid = computed(() => route.params.id);
 const user = userLoginStore();
+
+const {
+  mutate: rate,
+  onDone: ratingDone,
+  loading: ratingLoading,
+} = useMutation(RATE_RECIPE);
+
+const {
+  mutate: updateRating,
+  onDone: updateRatingDone,
+  loading: updateRatingLoading,
+} = useMutation(UPDATE_RATING_RECIPE);
+
+const { result: isRated, refetch: refetchIsRated } = useQuery(IS_RATED, {
+  recipe_id: Rid.value,
+});
+
+updateRatingDone((result) => {
+  console.log("update rating done");
+  refetchIsRated();
+});
+ratingDone((result) => {
+  console.log("ratingDone");
+  refetchIsRated();
+});
+
+if (ratingLoading) console.log("rating loading");
+
+const isRatedVal = computed(() => {
+  return isRated.value?.recipe_by_pk.is_rated;
+});
+
+console.log(isRatedVal);
+// watch works directly on a ref
 
 const { result: favRecipe, refetch: refetchIsFav } = useQuery(
   FAVORITES_WITH_RECIPE_ID,
@@ -59,7 +97,98 @@ const { result, loading, error, refetch } = useQuery(ONE_RECIPE, {
   id: Rid,
 });
 const recipe = computed(() => result.value?.recipe_by_pk);
+const recipeNumber = computed(
+  () => result.value?.recipe_by_pk.ratings[0].rating
+);
 
+const ratingVal = ref(recipeNumber.value);
+console.log(ratingVal.value);
+
+watch(ratingVal, async (newRating, oldRating) => {
+  if (isRatedVal.value == false) {
+    try {
+      console.log("excuting rate");
+      rate(
+        {
+          recipe_id: Rid.value,
+          user_id: user.currentUser.id,
+          rating: ratingVal.value,
+        },
+        {
+          update: (cache, { data: { insert_rating } }) => {
+            let data = cache.readQuery({
+              query: ALL_RECIPE,
+              variables: {
+                limit: 10,
+              },
+            });
+            try {
+              data = {
+                ...data,
+                recipe: [...data.recipe, insert_rating],
+              };
+              cache.writeQuery({
+                query: ALL_RECIPE,
+                variables: {
+                  limit: 10,
+                },
+                data,
+              });
+            } catch (error) {
+              console.log(error);
+              return;
+            }
+            return;
+            console.log(data);
+          },
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  } else {
+    console.log("excuting up");
+
+    updateRating(
+      {
+        recipe_id: Rid.value,
+        user_id: user.currentUser.id,
+        rating: ratingVal.value,
+      },
+      {
+        update: (cache, { data: { update_rating } }) => {
+          let data = cache.readQuery({
+            query: ALL_RECIPE,
+            variables: {
+              limit: 10,
+            },
+          });
+          try {
+            data = {
+              ...data,
+              recipe: [...data.recipe, update_rating.returning[0]],
+            };
+            console.log(update_rating.returning[0]);
+            cache.writeQuery({
+              query: ALL_RECIPE,
+              variables: {
+                limit: 10,
+              },
+              data,
+            });
+          } catch (error) {
+            console.log(error);
+            return;
+          }
+          return;
+          console.log(data);
+        },
+      }
+    );
+  }
+});
+
+console.log(recipeNumber);
 const {
   mutate: addToFavoriteMutation,
   onDone: addToFavDone,
@@ -192,11 +321,17 @@ const Favorite = (val) => {
             />
           </div>
           <StarRating
-            class="mt-12 text-2xl ml-8 flex justify-between items-center"
+            class="mt-12 text-xs text-primary flex justify-between items-center"
             active-color="#4D4DFF"
             :rounded-corners="true"
             :star-size="30"
+            v-model:rating="ratingVal"
+            :increment="0.25"
           />
+          <p v-if="isRatedVal" class="text-xs text-primary ml-2">
+            you've rated this recipe
+            <span class="text-red-700">{{ recipeNumber }}</span> before
+          </p>
           <button
             v-if="!isFavorite"
             @click="Favorite('addToFavorite')"

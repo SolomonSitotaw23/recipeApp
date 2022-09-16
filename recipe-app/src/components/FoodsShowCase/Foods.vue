@@ -1,5 +1,5 @@
 <script setup>
-import { ref } from "vue";
+import { ref, onMounted } from "vue";
 import { useQuery } from "@vue/apollo-composable";
 import { ALL_RECIPE, SEARCH_RECIPE } from "../../Quires";
 import { userLoginStore } from "../../store/store";
@@ -29,6 +29,7 @@ const {
 });
 
 const recipes = computed(() => result.value?.recipe);
+console.log("recipes", recipes);
 
 const NoFoods = computed(() => {
   return result.value?.recipe.length > 0 ? "" : "True";
@@ -119,6 +120,7 @@ const paginate = (n) => {
           :userLikedIt="recipe.user_who_likes.user_id"
           :imagePreview="recipe.imagesByRecipeId[0].urls"
           :user_id="recipe.user_id"
+          :rating="recipe.average_rating"
         />
       </div>
     </div>

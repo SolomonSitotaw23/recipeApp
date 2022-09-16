@@ -14,7 +14,7 @@ const scrollToAllRecipe = () => {
   <section class="header-banner h-96 w-full bg-yellow-50">
     <div class="flex flex-col items-center justify-center h-full">
       <h1
-        class="text-center text-3xl md:text-4xl lg:text-5xl poppins font-semibold text-blue-700"
+        class="text-center lexend text-3xl md:text-4xl lg:text-5xl poppins font-semibold text-blue-700"
       >
         Solo Food Recipe Sharing
       </h1>

@@ -9,6 +9,10 @@ import { ref } from "vue";
 
 const user = userLoginStore();
 
+const fullName = user.currentUser.first_name + " " + user.currentUser.last_name;
+
+console.log(fullName);
+
 const logoutHandler = () => {
   const router = useRouter();
   user.logout;
@@ -62,8 +66,8 @@ window.addEventListener("scroll", onChangeHeader);
           class="border-primary px-6 py-3 text-primary poppins rounded-full ring-red-300 focus:outline-none focus:ring-4 transform transition duration-700 hover:scale-105"
           text="Logout"
         >
-          logout
-        </button>
+          logout</button
+        ><span class="lexend text-primary">{{ fullName }}</span>
       </div>
       <div v-else class="flex items-center justify-end space-x-6">
         <RouterLink to="/signin" class="poppins">Sign In</RouterLink>

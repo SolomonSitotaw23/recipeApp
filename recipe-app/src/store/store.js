@@ -14,7 +14,7 @@ export const userLoginStore = defineStore("user", {
       this.isLoggedIn = true;
       this.userId = userId;
       this.currentUser = currentUser;
-      window.localStorage.setItem("token", token);
+      localStorage.setItem("token", token);
       this.router.push("/");
     },
     async logout() {

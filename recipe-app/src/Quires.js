@@ -70,6 +70,7 @@ export const ALL_RECIPE = gql`
       description
       food_category
       id
+      average_rating
       preparation_time
       ingredients {
         ingredients
@@ -110,6 +111,9 @@ export const ONE_RECIPE = gql`
       imagesByRecipeId {
         thumbnail_index
         urls
+      }
+      ratings {
+        rating
       }
       comments {
         author
@@ -387,6 +391,78 @@ export const DELETE_RECIPE = gql`
   mutation DELETE_RECIPE($recipe_id: uuid!) {
     delete_recipe_by_pk(id: $recipe_id) {
       id
+    }
+  }
+`;
+export const RATE_RECIPE = gql`
+  mutation RATE_RECIPE($recipe_id: uuid, $user_id: uuid!, $rating: float8) {
+    insert_rating(
+      objects: { recipe_id: $recipe_id, user_id: $user_id, rating: $rating }
+    ) {
+      returning {
+        rating
+        recipe_id
+        user_id
+        recipe {
+          average_rating
+        }
+      }
+    }
+  }
+`;
+
+export const UPDATE_RATING_RECIPE = gql`
+  mutation UPDATE_RATING_RECIPE(
+    $recipe_id: uuid
+    $user_id: uuid!
+    $rating: float8
+  ) {
+    update_rating(
+      where: { recipe_id: { _eq: $recipe_id }, user_id: { _eq: $user_id } }
+      _set: { rating: $rating }
+    ) {
+      returning {
+        rating
+        recipe_id
+        user_id
+        recipe {
+          created_at
+          description
+          food_category
+          id
+          ingredients {
+            ingredients
+          }
+          preparation_time
+          steps {
+            steps
+          }
+          title
+          user_id
+          imagesByRecipeId {
+            thumbnail_index
+            urls
+          }
+          ratings {
+            rating
+          }
+          comments {
+            author
+            content
+            created_at
+            id
+            user_id
+            recipe_id
+          }
+        }
+      }
+    }
+  }
+`;
+export const IS_RATED = gql`
+  query IS_RATED($recipe_id: uuid!) {
+    recipe_by_pk(id: $recipe_id) {
+      is_rated
     }
   }
 `;

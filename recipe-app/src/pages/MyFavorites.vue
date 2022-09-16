@@ -27,7 +27,7 @@ const NoFoods = computed(() => {
     <Loading text="loading" />
   </section>
 
-  <section v-if="NoFoods">
+  <section v-else-if="NoFoods">
     <NodataFound text="You have no favorite recipe" />
   </section>
 

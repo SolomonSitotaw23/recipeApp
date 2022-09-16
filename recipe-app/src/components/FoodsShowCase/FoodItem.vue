@@ -30,6 +30,7 @@ const props = defineProps({
   numberOfLikes: Number,
   userLikedIt: String,
   imagePreview: String,
+  rating: Number,
   user_id: String,
 });
 const ImageUrl = props.imagePreview.split(",");
@@ -221,7 +222,7 @@ const HandleLike = (val) => {
     </div>
 
     <img
-      class="w-64 mx-auto transform transition duration-300 hover:scale-105"
+      class="w-64 transform transition duration-300 hover:scale-105 rounded-full mx-auto max-w-120-px max-h-120"
       :src="imageUrl"
       alt=""
     />
@@ -239,6 +240,8 @@ const HandleLike = (val) => {
         :read-only="true"
         :rounded-corners="true"
         :star-size="20"
+        :rating="rating"
+        :increment="0.25"
       />
       <p class="poppins text-black">{{}}</p>
       <div class="flex flex-row justify-between align-bottom">

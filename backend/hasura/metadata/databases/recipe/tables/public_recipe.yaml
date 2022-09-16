@@ -55,6 +55,18 @@ array_relationships:
         table:
           schema: public
           name: likes
+computed_fields:
+  - name: average_rating
+    definition:
+      function:
+        schema: public
+        name: average_rating
+  - name: is_rated
+    definition:
+      function:
+        schema: public
+        name: user_rates
+      session_argument: hasura_session
 insert_permissions:
   - role: user
     permission:
@@ -76,6 +88,9 @@ select_permissions:
         - created_at
         - id
         - user_id
+      computed_fields:
+        - average_rating
+        - is_rated
       filter: {}
       allow_aggregations: true
 update_permissions:

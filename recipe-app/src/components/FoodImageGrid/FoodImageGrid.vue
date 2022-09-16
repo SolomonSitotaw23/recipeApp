@@ -3,11 +3,10 @@ const props = defineProps({
   images: String,
 });
 const ImageUrl = props.images.split(",");
-console.log(ImageUrl.length);
 </script>
 <template>
   <div class="container mx-auto">
-    <div class="grid-cols-3 p-20 bg-orange-50 space-y-0 grid gap-3 grid-rows-3">
+    <div class="grid-cols-3 p-20 bg-blue-50 space-y-0 grid gap-3 grid-rows-3">
       <div class="w-full rounded">
         <img
           v-if="ImageUrl[0]"

@@ -29,7 +29,6 @@ const {
 });
 
 const recipes = computed(() => result.value?.recipe);
-console.log("recipes", recipes);
 
 const NoFoods = computed(() => {
   return result.value?.recipe.length > 0 ? "" : "True";

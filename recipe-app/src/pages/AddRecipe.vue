@@ -24,7 +24,6 @@ import Swal from "sweetalert2";
 import ImageUpload from "../components/imageUpload/imageUpload.vue";
 import Loading from "../components/loading/Loading.vue";
 const next = ref(true);
-console.log(next.value);
 
 const categoriesList = [
   { id: 1, name: "category" },
@@ -63,9 +62,6 @@ const removeStep = () => {
 };
 
 const onSubmit = (values) => {
-  console.log(ingredient.value.ingredients.toString());
-  console.log(ingredient.value.steps.toString());
-  console.log(selectedCategory.value.name);
   recipeStore.addRecipeToBeAdded({
     title: values.title,
     description: values.description,

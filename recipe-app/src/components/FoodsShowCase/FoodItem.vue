@@ -61,7 +61,6 @@ const {
   user_id: currentUserId,
 });
 
-// console.log(isLikedResult);
 const isLikedVal = computed(() => {
   return isLikedResult.value?.likes.length > 0 ? "TRUE" : "";
 });
@@ -222,7 +221,7 @@ const HandleLike = (val) => {
     </div>
 
     <img
-      class="w-64 transform transition duration-300 hover:scale-105 rounded-full mx-auto max-w-120-px max-h-120"
+      class="w-64 bg-clip-content transform transition duration-300 hover:scale-105 rounded-full mx-auto max-w-60 max-h-60"
       :src="imageUrl"
       alt=""
     />

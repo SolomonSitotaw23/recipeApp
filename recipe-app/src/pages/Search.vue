@@ -21,7 +21,6 @@ const searchResults = computed(() => result.value?.search_recipe);
 const NoFoods = computed(() => {
   return result.value?.search_recipe.length > 0 ? "" : "True";
 });
-console.log(NoFoods);
 </script>
 
 <template>

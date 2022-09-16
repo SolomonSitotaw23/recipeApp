@@ -47,21 +47,16 @@ const { result: isRated, refetch: refetchIsRated } = useQuery(IS_RATED, {
 });
 
 updateRatingDone((result) => {
-  console.log("update rating done");
   refetchIsRated();
 });
 ratingDone((result) => {
-  console.log("ratingDone");
   refetchIsRated();
 });
-
-if (ratingLoading) console.log("rating loading");
 
 const isRatedVal = computed(() => {
   return isRated.value?.recipe_by_pk.is_rated;
 });
 
-console.log(isRatedVal);
 // watch works directly on a ref
 
 const { result: favRecipe, refetch: refetchIsFav } = useQuery(
@@ -102,7 +97,6 @@ const recipeNumber = computed(
 );
 
 const ratingVal = ref(recipeNumber.value);
-console.log(ratingVal.value);
 
 watch(ratingVal, async (newRating, oldRating) => {
   if (isRatedVal.value == false) {
@@ -147,8 +141,6 @@ watch(ratingVal, async (newRating, oldRating) => {
       console.log(error);
     }
   } else {
-    console.log("excuting up");
-
     updateRating(
       {
         recipe_id: Rid.value,
@@ -168,7 +160,7 @@ watch(ratingVal, async (newRating, oldRating) => {
               ...data,
               recipe: [...data.recipe, update_rating.returning[0]],
             };
-            console.log(update_rating.returning[0]);
+
             cache.writeQuery({
               query: ALL_RECIPE,
               variables: {
@@ -181,14 +173,12 @@ watch(ratingVal, async (newRating, oldRating) => {
             return;
           }
           return;
-          console.log(data);
         },
       }
     );
   }
 });
 
-console.log(recipeNumber);
 const {
   mutate: addToFavoriteMutation,
   onDone: addToFavDone,
@@ -302,6 +292,9 @@ const Favorite = (val) => {
           >
             {{ recipe.description }}
           </p>
+          <p class="lexend ml-2 mb-2">
+            it takes {{ recipe.preparation_time }} minutes to cook
+          </p>
           <div>
             <Disclosure
               title="Ingredients"
@@ -320,6 +313,7 @@ const Favorite = (val) => {
               listStyle="list-decimal"
             />
           </div>
+
           <StarRating
             class="mt-12 text-xs text-primary flex justify-between items-center"
             active-color="#4D4DFF"
@@ -328,9 +322,18 @@ const Favorite = (val) => {
             v-model:rating="ratingVal"
             :increment="0.25"
           />
-          <p v-if="isRatedVal" class="text-xs text-primary ml-2">
+          <p
+            v-if="updateRatingLoading || ratingLoading"
+            class="text-xs text-primary ml-2"
+          >
+            Rating ...
+          </p>
+          <p v-else-if="isRatedVal" class="text-xs text-primary ml-2">
             you've rated this recipe
             <span class="text-red-700">{{ recipeNumber }}</span> before
+          </p>
+          <p v-else-if="!isRatedVal" class="text-xs text-primary ml-2">
+            rate this recipe
           </p>
           <button
             v-if="!isFavorite"
@@ -347,7 +350,7 @@ const Favorite = (val) => {
             type="button"
           >
             <TrashIcon aria-hidden="true" class="w-4" />
-            Remove
+            Remove From Favorites
           </button>
         </div>
 
@@ -363,6 +366,10 @@ const Favorite = (val) => {
       </div>
     </div>
   </main>
+  <span class="text-xs text-gray-300 mx-8 flex">
+    go down to give comments on this recipe
+  </span>
+  <hr class="mx-8 text-primary" />
   <Comment :id="Rid" />
   <!-- </section> -->
 </template>

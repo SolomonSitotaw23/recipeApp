@@ -1,8 +1,6 @@
 <script setup>
 import { ref } from "vue";
-
 import { useQuery } from "@vue/apollo-composable";
-
 import { computed } from "@vue/reactivity";
 import FoodItem from "../components/FoodsShowCase/FoodItem.vue";
 import Loading from "../components/loading/Loading.vue";
@@ -11,9 +9,7 @@ import { userLoginStore } from "../store/store";
 import NodataFound from "../components/NodataFound/NodataFound.vue";
 
 const { result, loading, error, refetch } = useQuery(MY_FAVORITES);
-
 const favorites = computed(() => result.value?.favorites);
-
 const NoFoods = computed(() => {
   return result.value?.favorites.length > 0 ? "" : "True";
 });

@@ -77,3 +77,7 @@ body::-webkit-scrollbar {
 .filepond--item {
   width: calc(50% - 0.5em);
 }
+
+.custom-position {
+  object-position: 60% -3px;
+}

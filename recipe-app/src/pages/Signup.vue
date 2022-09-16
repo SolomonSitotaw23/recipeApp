@@ -22,7 +22,6 @@ const router = useRouter();
 const { mutate: signup, onDone } = useMutation(SIGNUP);
 
 onDone((result) => {
-  console.log(result.data.signup);
   Swal.fire("Sign in success!", "welcome !", "success");
   const token = result.data.signup.token;
   const userId = result.data.signup.id;
@@ -38,7 +37,6 @@ const onSubmit = (values) => {
     email: values.email,
     password: values.password,
   });
-  // console.log(result);
 };
 
 const Inputs = [

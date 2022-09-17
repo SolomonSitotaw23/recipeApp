@@ -58,7 +58,7 @@ To set up this project Locally
   docker compose up
    ```
    and
-     ```sh
+   ```sh
  cd hasura && hasura metadata apply && hasura console
    ```
  now hasura console start running on port 9697

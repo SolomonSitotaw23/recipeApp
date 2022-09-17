@@ -1,6 +1,6 @@
 <br />
-<div align="center">
-  <h3 align="center">FOOD RECIPE APP FOR MINAB TECH RECRUIT ASSIGNMENT</h3>
+<div align="right">
+  <h3 align="right">FOOD RECIPE APP FOR MINAB TECH RECRUIT ASSIGNMENT</h3>
 
 ### Built With
 
@@ -13,7 +13,7 @@
 *![Yarn](https://img.shields.io/badge/yarn-%232C8EBB.svg?style=for-the-badge&logo=yarn&logoColor=white)
 *![NPM](https://img.shields.io/badge/NPM-%23000000.svg?style=for-the-badge&logo=npm&logoColor=white)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 
 
@@ -50,24 +50,24 @@ To set up this project Locally
    npm install
    ```
 3. and run the express server  `
-   ```js
+   ```sh
    node index.js 
    ```
    or simply
-     ```js
+     ```sh
    nodemon
    ```
 4.  and run the docker and hasura inside the backend folder  `
-   ```js
+   ```sh
   docker compose up
    ```
    and
-     ```js
+     ```sh
  cd hasura && hasura metadata apply && hasura console
    ```
  now hasura console start running on port 9697
 5.then go back to the recipe-app this is the front end part and run
-     ```js
+     ```sh
      yarn && yarn dev
    ```
 6. then the app start running on port 5173

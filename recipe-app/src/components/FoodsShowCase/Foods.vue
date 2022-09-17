@@ -82,7 +82,7 @@ const paginate = (n) => {
           value=""
           name="keyword"
           class="rounded-full px-4 focus:outline-none w-full bg-transparent"
-          placeholder="Search here ......."
+          placeholder="Search here with ingredient,title or description key words......."
           :rules="validateSearch"
         />
 

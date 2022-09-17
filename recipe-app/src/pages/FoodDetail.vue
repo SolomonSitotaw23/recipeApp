@@ -92,11 +92,8 @@ const { result, loading, error, refetch } = useQuery(ONE_RECIPE, {
   id: Rid,
 });
 const recipe = computed(() => result.value?.recipe_by_pk);
-const recipeNumber = computed(
-  () => result.value?.recipe_by_pk.ratings[0].rating
-);
 
-const ratingVal = ref(recipeNumber.value);
+const ratingVal = ref(0);
 
 watch(ratingVal, async (newRating, oldRating) => {
   if (isRatedVal.value == false) {

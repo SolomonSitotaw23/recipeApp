@@ -72,7 +72,7 @@ To set up this project Locally
 
 <!-- PROJECT SCREENSHOT -->
 ##PROJECT SCREENSHOT
-https://github.com/SolomonSitotaw23/recipeApp/tree/master/SCREENSHOTS/1.jpg
+![Solo](SCREENSHOTS/1.jpg)
 https://github.com/SolomonSitotaw23/recipeApp/tree/master/SCREENSHOTS/2.jpg
 https://github.com/SolomonSitotaw23/recipeApp/tree/master/SCREENSHOTS/3.jpg
 https://github.com/SolomonSitotaw23/recipeApp/tree/master/SCREENSHOTS/4.jpg

@@ -63,7 +63,7 @@ To set up this project Locally
    ```
  now hasura console start running on port 9697
 5.then go back to the recipe-app this is the front end part and run
-     ```sh
+   ```sh
      yarn && yarn dev
    ```
 6. then the app start running on port 5173

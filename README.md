@@ -72,7 +72,6 @@ To set up this project Locally
 
 <!-- PROJECT SCREENSHOT -->
 ##PROJECT SCREENSHOT
-![Solo](SCREENSHOTS/1.png)
 ![Solo](SCREENSHOTS/2.png)
 ![Solo](SCREENSHOTS/3.png)
 ![Solo](SCREENSHOTS/4.png)
@@ -80,6 +79,7 @@ To set up this project Locally
 ![Solo](SCREENSHOTS/6.png)
 ![Solo](SCREENSHOTS/11.png)
 ![Solo](SCREENSHOTS/12.png)
+![Solo](SCREENSHOTS/13.png)
 
 <!-- CONTACT -->
 ## Contact

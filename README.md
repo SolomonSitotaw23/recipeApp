@@ -1,6 +1,6 @@
 <br />
-<div align="right">
-  <h3 align="right">FOOD RECIPE APP FOR MINAB TECH RECRUIT ASSIGNMENT</h3>
+<div align="left">
+  <h3 align="left">FOOD RECIPE APP FOR MINAB TECH RECRUIT ASSIGNMENT</h3>
 
 ### Built With
 

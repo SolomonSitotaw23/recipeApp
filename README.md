@@ -71,6 +71,17 @@ To set up this project Locally
 6. then the app start running on port 5173
 
 <!-- PROJECT SCREENSHOT -->
+##PROJECT SCREENSHOT
+https://github.com/SolomonSitotaw23/recipeApp/tree/master/SCREENSHOTS/1.jpg
+https://github.com/SolomonSitotaw23/recipeApp/tree/master/SCREENSHOTS/2.jpg
+https://github.com/SolomonSitotaw23/recipeApp/tree/master/SCREENSHOTS/3.jpg
+https://github.com/SolomonSitotaw23/recipeApp/tree/master/SCREENSHOTS/4.jpg
+https://github.com/SolomonSitotaw23/recipeApp/tree/master/SCREENSHOTS/5.jpg
+https://github.com/SolomonSitotaw23/recipeApp/tree/master/SCREENSHOTS/6.jpg
+https://github.com/SolomonSitotaw23/recipeApp/tree/master/SCREENSHOTS/7.jpg
+https://github.com/SolomonSitotaw23/recipeApp/tree/master/SCREENSHOTS/8.jpg
+https://github.com/SolomonSitotaw23/recipeApp/tree/master/SCREENSHOTS/11.jpg
+https://github.com/SolomonSitotaw23/recipeApp/tree/master/SCREENSHOTS/13.jpg
 
 
 

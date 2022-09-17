@@ -454,6 +454,15 @@ export const UPDATE_RATING_RECIPE = gql`
             user_id
             recipe_id
           }
+          average_rating
+          user_who_likes_aggregate {
+            aggregate {
+              count
+            }
+          }
+          user_who_likes {
+            user_id
+          }
         }
       }
     }

@@ -91,9 +91,13 @@ const isFavorite = computed(() => {
 const { result, loading, error, refetch } = useQuery(ONE_RECIPE, {
   id: Rid,
 });
+var recipeNumber;
 const recipe = computed(() => result.value?.recipe_by_pk);
-
-const ratingVal = ref(0);
+const ratingVal = ref(result.value?.recipe_by_pk.ratings[0].rating);
+if (isRatedVal) {
+  recipeNumber = computed(() => result.value?.recipe_by_pk.ratings[0].rating);
+  // ratingVal.value = recipeNumber;
+}
 
 watch(ratingVal, async (newRating, oldRating) => {
   if (isRatedVal.value == false) {
@@ -155,7 +159,7 @@ watch(ratingVal, async (newRating, oldRating) => {
           try {
             data = {
               ...data,
-              recipe: [...data.recipe, update_rating.returning[0]],
+              recipe: [...data.recipe, update_rating.returning[0].recipe],
             };
 
             cache.writeQuery({
@@ -368,5 +372,4 @@ const Favorite = (val) => {
   </span>
   <hr class="mx-8 text-primary" />
   <Comment :id="Rid" />
-  <!-- </section> -->
 </template>

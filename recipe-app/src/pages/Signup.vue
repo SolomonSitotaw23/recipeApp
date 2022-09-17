@@ -86,7 +86,7 @@ const Inputs = [
 <template>
   <main class="h-screen w-full banner">
     <div class="flex flex-col justify-center items-center h-screen">
-      <h1 class="text-3xl">Sign in</h1>
+      <h1 class="text-3xl">Sign up</h1>
       <Form
         class="bg-white w-96 mt-6 p-4 rounded-lg shadow-lg"
         @submit="onSubmit"

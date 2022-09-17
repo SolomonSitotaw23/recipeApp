@@ -46,6 +46,7 @@ const NoFoods = computed(() => {
           :category="searchResult.food_category"
           :numberOfLikes="searchResult.user_who_likes_aggregate.aggregate.count"
           :imagePreview="searchResult.imagesByRecipeId[0].urls"
+          :rating="searchResult.average_rating"
         />
       </div>
     </div>

@@ -360,14 +360,12 @@ export const REMOVE_FROM_FAVORITES = gql`
 
 export const SEARCH_RECIPE = gql`
   query SEARCH_RECIPE($keyword: String) {
-    search_recipe(
-      args: { search: $keyword }
-      ingredients: { ingredients: { _ilike: $keyword } }
-    ) {
+    search_recipe(args: { search: $keyword }) {
       created_at
       description
       food_category
       id
+      average_rating
       preparation_time
       ingredients {
         ingredients

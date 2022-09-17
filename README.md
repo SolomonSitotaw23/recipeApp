@@ -73,22 +73,13 @@ To set up this project Locally
 <!-- PROJECT SCREENSHOT -->
 ##PROJECT SCREENSHOT
 ![Solo](SCREENSHOTS/1.png)
-  <hr />
-  ![Solo](SCREENSHOTS/2.png)
-  <hr />
-  ![Solo](SCREENSHOTS/3.png)
-  <hr />
+![Solo](SCREENSHOTS/2.png)
+![Solo](SCREENSHOTS/3.png)
 ![Solo](SCREENSHOTS/4.png)
-  <hr />
-  ![Solo](SCREENSHOTS/5.png)
-  <hr />
-  ![Solo](SCREENSHOTS/6.png)
-  <hr />
-  ![Solo](SCREENSHOTS/11.png)
-  <hr />
-  ![Solo](SCREENSHOTS/12.png)
-  <hr />
-
+![Solo](SCREENSHOTS/5.png)
+![Solo](SCREENSHOTS/6.png)
+![Solo](SCREENSHOTS/11.png)
+![Solo](SCREENSHOTS/12.png)
 
 <!-- CONTACT -->
 ## Contact

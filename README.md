@@ -73,16 +73,21 @@ To set up this project Locally
 <!-- PROJECT SCREENSHOT -->
 ##PROJECT SCREENSHOT
 ![Solo](SCREENSHOTS/1.png)
-https://github.com/SolomonSitotaw23/recipeApp/tree/master/SCREENSHOTS/2.jpg
-https://github.com/SolomonSitotaw23/recipeApp/tree/master/SCREENSHOTS/3.jpg
-https://github.com/SolomonSitotaw23/recipeApp/tree/master/SCREENSHOTS/4.jpg
-https://github.com/SolomonSitotaw23/recipeApp/tree/master/SCREENSHOTS/5.jpg
-https://github.com/SolomonSitotaw23/recipeApp/tree/master/SCREENSHOTS/6.jpg
-https://github.com/SolomonSitotaw23/recipeApp/tree/master/SCREENSHOTS/7.jpg
-https://github.com/SolomonSitotaw23/recipeApp/tree/master/SCREENSHOTS/8.jpg
-https://github.com/SolomonSitotaw23/recipeApp/tree/master/SCREENSHOTS/11.jpg
-https://github.com/SolomonSitotaw23/recipeApp/tree/master/SCREENSHOTS/13.jpg
-
+  <hr />
+  ![Solo](SCREENSHOTS/2.png)
+  <hr />
+  ![Solo](SCREENSHOTS/3.png)
+  <hr />
+![Solo](SCREENSHOTS/4.png)
+  <hr />
+  ![Solo](SCREENSHOTS/5.png)
+  <hr />
+  ![Solo](SCREENSHOTS/6.png)
+  <hr />
+  ![Solo](SCREENSHOTS/11.png)
+  <hr />
+  ![Solo](SCREENSHOTS/12.png)
+  <hr />
 
 
 <!-- CONTACT -->

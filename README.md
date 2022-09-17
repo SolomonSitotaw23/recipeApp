@@ -62,7 +62,8 @@ To set up this project Locally
  cd hasura && hasura metadata apply && hasura console
    ```
  now hasura console start running on port 9697
-5.then go back to the recipe-app this is the front end part and run
+ 
+5.  then go back to the recipe-app this is the front end part and run
    ```sh
      yarn && yarn dev
    ```

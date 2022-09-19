@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Ephrem",
+  "author": "Solomon_Sitotaw",
   "license": "ISC",
   "dependencies": {
     "axios": "^0.27.2",
